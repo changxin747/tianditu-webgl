@@ -12,31 +12,21 @@
     </style>
     <script>
         var map;
-        var zoom = 12;
+        var zoom = 9;
         function onLoad() {
 
             //初始化地图对象
             map = new T.Map("mapDiv");
             //设置显示地图的中心点和级别
-            map.centerAndZoom(new T.LngLat(116.40969, 39.89945), zoom);
+            map.centerAndZoom(new T.LngLat(116.90969, 40.39945), zoom);
 
+            //webgl 图层
             var ciLayer = T.canvasIconLayer({}).addTo(map);
-            // ciLayer.addOnClickListener(function (e,data) {
-            //     var marker = data[0].data.options.marker;
-            //     var markerInfoWin = new T.InfoWindow("我是第"+data[0].data._leaflet_id+"个点");
-            //     marker.openInfoWindow(markerInfoWin);
-                
-            // });
-            // ciLayer.addOnHoverListener(function (e,data) {
-            //     var marker = data[0].data.options.marker;
-            //     var markerInfoWin = new T.InfoWindow("我是第"+data[0].data._leaflet_id+"个点");
-            //     marker.openInfoWindow(markerInfoWin);
-            // });
-            
-            var markers = []
-            for(var i = 0; i < 10; i++) {
-				var x = 116.411794 + (0.01 * Math.random());
-                var y = 39.9068 + (0.01 * Math.random());
+
+            //添加点
+            for(var i = 0; i < 20000; i++) {
+				var x = 116.411794 + (1 * Math.random());
+                var y = 39.9068 + (1 * Math.random());
                 //创建图片对象
                 var icon = new T.Icon({
                     iconUrl: "markerA.png",
@@ -45,18 +35,37 @@
                 });
 				//创建标注对象
                 var marker = new T.Marker(new T.LngLat(x, y), {icon: icon});
-                // marker.options.marker = marker;
-                markers.push(marker);
 
-                //传统方式向地图上添加标注
+                //传统方式向地图上添加点
                 // map.addOverLay(marker);
-            }
-            //webgl方式向地图上添加点
-            ciLayer.addLayers(markers);
 
-            // markers[0].openInfoWindow("aaaa");
-            
+                //webgl方式向地图上添加点
+                ciLayer.addLayer(marker);
+            }
+
+            //图层鼠标点击事件
+            ciLayer.addOnClickListener(function (e,data) {
+                var lnglat = data[0].data.getLngLat();
+                //向地图上添加信息窗口
+                var infoWin = new T.InfoWindow("我是第"+data[0].data._leaflet_id+"个点");
+                infoWin.setLngLat(lnglat);
+                map.openInfoWindow(infoWin);
+            });
+
+            //图层鼠标移入事件
+            // ciLayer.addOnHoverListener(function (e,data) {
+            //     var lnglat = data[0].data.getLngLat();
+            //     //向地图上添加信息窗口
+            //     var infoWin = new T.InfoWindow("我是第"+data[0].data._leaflet_id+"个点");
+            //     infoWin.setLngLat(lnglat);
+            //     map.openInfoWindow(infoWin);
+            // });
+
+
+
+
         }
+
     </script>
 </head>
 <body onLoad="onLoad()">
