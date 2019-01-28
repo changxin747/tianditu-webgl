@@ -54,7 +54,7 @@ function layerFactory(L) {
         addMarker: function (marker) {
 
             var self = this;
-            var latlng = marker.getLatLng();
+            var latlng = marker.getLngLat();
             var isDisplaying = self._map.getBounds().contains(latlng);
             var dat = self._addMarker(marker,latlng,isDisplaying);
 
@@ -66,7 +66,7 @@ function layerFactory(L) {
 
         addLayer: function (layer) {
 
-            if ((layer.options.pane == 'markerPane') && layer.options.icon) this.addMarker(layer);
+            if ((layer.options.hE == 'markerPane') && layer.options.icon) this.addMarker(layer);
             else console.error('Layer isn\'t a marker');
         },
 
@@ -87,7 +87,7 @@ function layerFactory(L) {
             //If we are removed point
             if(marker["minX"]) marker = marker.data;
 
-            var latlng = marker.getLatLng();
+            var latlng = marker.getLngLat();
             var isDisplaying = self._map.getBounds().contains(latlng);
 
             var markerData = {
@@ -207,7 +207,7 @@ function layerFactory(L) {
             if (!this._imageLookup) this._imageLookup = {};
             if (!pointPos) {
 
-                pointPos = self._map.lngLatToContainerPoint(marker.getLatLng());
+                pointPos = self._map.lngLatToContainerPoint(marker.getLngLat());
             }
 
             var iconUrl = marker.options.icon.options.iconUrl;
