@@ -2,7 +2,7 @@
 import {setPosition,create,testProp,addClass} from "leaflet/src/dom/DomUtil"
 import {stamp} from "leaflet/src/core/Util"
 import {any3d} from "leaflet/src/core/Browser"
-import {layerFactory} from "./canvasIconLayer"
+import {layerFactory} from "./plugin/tdt.canvas-markers"
 import {rbush} from "rbush"
 
 T.DomUtil = {

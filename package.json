@@ -15,7 +15,6 @@
     "webpack-cli": "^3.2.1"
   },
   "scripts": {
-    "build": "babel full.es6 --out-file fulles5.js --presets es2015",
     "pack": "webpack --config webpack.config.js"
   },
   "author": "",

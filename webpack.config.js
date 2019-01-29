@@ -2,10 +2,10 @@ const path = require("path");
 
 module.exports = {
     mode: "development",
-    entry: "./fileEs6/tdt.js",
+    entry: "./src/_full.js",
     output: {
         path: path.join(__dirname, "dist"),
-        filename: "tdt.js",
+        filename: "tdt.canvas-markers.js",
     }
 };
 
