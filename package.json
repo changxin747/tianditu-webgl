@@ -16,7 +16,7 @@
   },
   "scripts": {
     "build": "babel full.es6 --out-file fulles5.js --presets es2015",
-    "pack": "webpack --mode development"
+    "pack": "webpack --config webpack.config.js"
   },
   "author": "",
   "license": "ISC"
